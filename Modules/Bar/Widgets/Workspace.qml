@@ -824,6 +824,15 @@ Item {
 
             width: root.itemSize
             height: root.itemSize
+            // Smooth scale animation on hover
+            scale: itemHovered ? 1.1 : 1.0
+
+            Behavior on scale {
+              NumberAnimation {
+                duration: Style.animationNormal
+                easing.type: Easing.OutBack
+              }
+            }
 
             IconImage {
               id: groupedAppIcon
@@ -834,6 +843,13 @@ Item {
               smooth: true
               asynchronous: true
               layer.enabled: root.colorizeIcons && !model.isFocused
+
+              Behavior on opacity {
+                NumberAnimation {
+                  duration: Style.animationNormal
+                  easing.type: Easing.InOutCubic
+                }
+              }
 
               Rectangle {
                 id: groupedFocusIndicator
